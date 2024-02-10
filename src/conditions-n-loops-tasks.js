@@ -452,10 +452,30 @@ function sortByAsc(arr) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
-}
+function shuffleChar(str, iterations) {
+  let answer = str;
+  for (let i = 0; i < iterations; i += 1) {
+    let even = '';
+    let odd = [];
+    for (let j = 0; j < answer.length; j += 1) {
+      if (j % 2 === 0) {
+        even += answer[j];
+      } else {
+        odd += answer[j];
+      }
+    }
+    answer = '';
+    for (let k = 0; k < even.length; k += 1) {
+      answer += even[k];
+    }
+    for (let k = 0; k < odd.length; k += 1) {
+      answer += odd[k];
+    }
+  }
 
+  return answer;
+}
+console.log(shuffleChar('qwerty', 2));
 /**
  * Returns the nearest largest integer consisting of the digits of the given positive integer.
  * If there is no such number, it returns the original number.
