@@ -475,7 +475,7 @@ function shuffleChar(str, iterations) {
 
   return answer;
 }
-console.log(shuffleChar('qwerty', 2));
+
 /**
  * Returns the nearest largest integer consisting of the digits of the given positive integer.
  * If there is no such number, it returns the original number.
