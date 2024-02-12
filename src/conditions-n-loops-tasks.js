@@ -197,16 +197,26 @@ function convertNumberToString(numberStr) {
   let answer = '';
 
   for (let i = 0; i < numberStr.length; i += 1) {
-    if (numberStr[i] === '-') {
-      answer += 'minus';
-    } else if (numberStr[i] === '.' || numberStr[i] === ',') {
-      answer += ' point';
-    } else {
-      const numeral = stringNumerals[numberStr[i]];
-      answer += answer.length > 0 ? ` ${numeral}` : numeral;
+    switch (numberStr[i]) {
+      case '-':
+        answer += 'minus';
+        break;
+      case '.':
+        answer += ' point';
+        break;
+
+      case ',':
+        answer += ' point';
+        break;
+
+      default:
+        answer +=
+          answer.length > 0
+            ? ` ${stringNumerals[numberStr[i]]}`
+            : stringNumerals[numberStr[i]];
+        break;
     }
   }
-
   return answer;
 }
 
@@ -420,19 +430,18 @@ function rotateMatrix(/* matrix */) {
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
 function sortByAsc(arr) {
-  const answer = arr;
-
-  for (let i = 0; i < answer.length - 1; i += 1) {
-    for (let j = 0; j < answer.length - 1 - i; j += 1) {
-      if (answer[j] > answer[j + 1]) {
-        const temporary = answer[j];
-        answer[j] = answer[j + 1];
-        answer[j + 1] = temporary;
-      }
+  const copyArr = arr;
+  for (let i = 1; i < copyArr.length; i += 1) {
+    const item = copyArr[i];
+    let j = i - 1;
+    while (j >= 0 && copyArr[j] > item) {
+      copyArr[j + 1] = copyArr[j];
+      j -= 1;
     }
+    copyArr[j + 1] = item;
   }
 
-  return answer;
+  return copyArr;
 }
 
 /**
