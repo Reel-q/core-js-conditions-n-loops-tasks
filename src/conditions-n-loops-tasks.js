@@ -539,7 +539,7 @@ function getNearestBigger(number) {
 
   return result;
 }
-console.log(getNearestBigger(1203450));
+
 module.exports = {
   isPositive,
   getMaxNumber,
