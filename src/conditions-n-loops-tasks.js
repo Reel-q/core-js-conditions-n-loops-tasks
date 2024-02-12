@@ -463,22 +463,18 @@ function sortByAsc(arr) {
  */
 function shuffleChar(str, iterations) {
   let answer = str;
-  for (let i = 0; i < iterations; i += 1) {
+  for (let i = 1; i <= iterations; i += 1) {
     let even = '';
-    let odd = [];
-    for (let j = 0; j < answer.length; j += 1) {
-      if (j % 2 === 0) {
-        even += answer[j];
-      } else {
-        odd += answer[j];
-      }
+    let odd = '';
+    for (let j = 0; j < answer.length; j += 2) {
+      even += answer[j];
+
+      odd += answer[j + 1];
     }
-    answer = '';
-    for (let k = 0; k < even.length; k += 1) {
-      answer += even[k];
-    }
-    for (let k = 0; k < odd.length; k += 1) {
-      answer += odd[k];
+    answer = even + odd;
+    if (answer === str) {
+      const nextIterations = iterations % i;
+      return shuffleChar(str, nextIterations);
     }
   }
 
